@@ -11,11 +11,24 @@ public class IOCDemoConfiguration {
         return new CodingNomadsGreetingProvider();
     }
 
+
     @Bean
     public GreetingRenderer renderer() {
         GreetingRenderer renderer =
                 new StandardOutGreetingRenderer();
         renderer.setGreetingProvider(provider());
         return renderer;
+    }
+
+    @Bean
+    public GreetingProvider johngreetingprovider() {return new JohnGreetingProvider();}
+
+    @Bean
+    public GreetingRenderer jprenderer() {
+        GreetingRenderer jprenderer =
+                new StandardOutGreetingRenderer();
+        jprenderer.setGreetingProvider(johngreetingprovider());
+        return jprenderer;
+
     }
 }
