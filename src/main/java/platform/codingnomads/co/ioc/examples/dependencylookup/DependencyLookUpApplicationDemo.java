@@ -14,6 +14,5 @@ public class DependencyLookUpApplicationDemo {
         GreetingRenderer jpGreetingRenderer = ctx.getBean("jprenderer", GreetingRenderer.class);
         jpGreetingRenderer.render();
 
-
     }
 }
