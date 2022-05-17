@@ -14,9 +14,15 @@
         <property name="name" value="IntelliJ IDEA"/>
         <property name="version" value="2021.1"/>
     </bean>
+
     <bean id="jdk" class="platform.codingnomads.co.corespring.examples.application_context.xml.JDK">
         <property name="name" value="OpenJDK"/>
         <property name="version" value="11"/>
+    </bean>
+
+    <bean id="sql" class="platform.codingnomads.co.corespring.examples.application_context.xml.SQL">
+        <property name="name" value="MySQL"/>
+        <property name="version" value="8"/>
     </bean>
 
 </beans>
