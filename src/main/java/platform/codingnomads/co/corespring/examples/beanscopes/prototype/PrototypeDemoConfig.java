@@ -11,4 +11,10 @@ public class PrototypeDemoConfig {
     public SpringBean springBean() {
         return new SpringBean();
     }
+
+    @Bean
+    @Scope(value = "prototype")
+    public SecondBean springBeanTwo() {
+        return new SecondBean();
+    }
 }
