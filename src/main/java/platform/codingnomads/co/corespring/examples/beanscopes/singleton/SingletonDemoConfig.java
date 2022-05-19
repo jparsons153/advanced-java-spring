@@ -6,9 +6,17 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class SingletonDemoConfig {
+    /*
     @Bean
     @Scope(value = "singleton")
     public SpringBean springBean() {
+        return new SpringBean();
+    }
+
+     */
+
+    @Bean
+    public SpringBean springBeanTwo() {
         return new SpringBean();
     }
 }
