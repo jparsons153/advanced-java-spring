@@ -19,4 +19,14 @@ public class SampleBean {
         System.out.println("time to @PreDestroy and head home..");
     }
 
+    @PostConstruct
+    public void demomethod() {
+        System.out.println("bean method using @PostConstruct..");
+    }
+
+    @PreDestroy
+    public void demomethodtwo() {
+        System.out.println("bean method two using @PreDestroy..");
+    }
+
 }
