@@ -11,4 +11,7 @@ public class ConfigurationDemoConfig {
     public SampleClass sampleClass() {
         return new SampleClass();
     }
+
+    @Bean
+    public DemoClass demoClass(){return new DemoClass();}
 }

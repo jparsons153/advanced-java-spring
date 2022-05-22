@@ -9,6 +9,7 @@ public class ConfigurationDemo {
     public static void main(String[] args) {
         applicationContext = new AnnotationConfigApplicationContext(ConfigurationDemoConfig.class);
         isBeanPresent("sampleClass", "configurationDemoConfig");
+        isBeanPresent("demoClass", "configurationDemoConfig");
     }
 
     private static void isBeanPresent(String... beans) {
@@ -17,4 +18,5 @@ public class ConfigurationDemo {
                     applicationContext.containsBean(beanName));
         }
     }
+
 }
