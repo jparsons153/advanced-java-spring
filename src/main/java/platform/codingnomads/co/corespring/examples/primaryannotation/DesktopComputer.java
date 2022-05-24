@@ -7,4 +7,7 @@ import org.springframework.stereotype.Component;
 public class DesktopComputer {
     @Autowired
     private VideoCard videoCard;
+
+   @Autowired
+   private GraphicsCard graphicsCard;
 }
