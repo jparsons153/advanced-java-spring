@@ -13,9 +13,12 @@ public class Nomad {
 
     private Integer age;
 
-    public Nomad(@Value("${nomad.name}") String name, @Value("${nomad.age}") Integer age) {
+    private String address;
+
+    public Nomad(@Value("${nomad.name}") String name, @Value("${nomad.age}") Integer age, @Value("${nomad.address}") String address) {
         this.name = name;
         this.age = age;
+        this.address = address;
     }
 
     @Value("Hello!!")
@@ -45,7 +48,7 @@ public class Nomad {
     }
 
     public String output() {
-        return "Spring Developer is building awesome software using: ".concat(jdk).concat(" , ").concat(framework).concat(" and ").concat(ide);
+        return "Spring Developer" .concat(name).concat(" from ").concat(address) + "is building awesome software using: ".concat(jdk).concat(" , ").concat(framework).concat(" and ").concat(ide);
     }
 
     public List<String> getWorkingDays() {
