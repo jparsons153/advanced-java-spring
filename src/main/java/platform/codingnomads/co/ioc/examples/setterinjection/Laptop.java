@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class Laptop {
     private Processor processor;
     private OS os;
+    private Camera sonyCamera;
 
     @Autowired
     public void setProcessor(Processor processor) {
@@ -18,8 +19,11 @@ public class Laptop {
         this.os = os;
     }
 
+    @Autowired
+    public void setCamera(Camera sonyCamera) {this.sonyCamera = sonyCamera;}
+
     public String printLaptopConfiguration() {
         return "processor: " + processor.getCore() + " core " + processor.getName() +
-                "\nOS: " + os.getName();
+                "\nOS: " + os.getName() + " camera MB pixels: " +sonyCamera.getPixels();
     }
 }

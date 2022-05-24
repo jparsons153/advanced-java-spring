@@ -19,4 +19,5 @@ public class LaptopConfiguration {
 
     @Bean
     public Keyboard ukKeyboard() { return new Keyboard("UK");}
+
 }
