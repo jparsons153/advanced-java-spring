@@ -11,4 +11,8 @@ public class DesktopComputer {
     @Autowired
     @Qualifier("radeon")
     private VideoCard videoCard;
+
+    @Autowired
+    @Qualifier("focusrite")
+    private SoundCard soundCard;
 }

@@ -1,2 +1,4 @@
-package platform.codingnomads.co.corespring.examples.autowiredannotation;public interface SoundCard {
+package platform.codingnomads.co.corespring.examples.autowiredannotation;
+
+public interface SoundCard {
 }
