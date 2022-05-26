@@ -10,6 +10,10 @@ public class PropertySourceAnnotationDemo {
         final App app = ctx.getBean(App.class);
         System.out.println("Values from myapp.properties: " +
                 "App Name: " + app.getAppName() + ", App Version: " + app.getAppVersion());
+        final Details details = ctx.getBean(Details.class);
+        System.out.println("Values from details.properties: " +
+                "Name: " + details.getDetailsName() + ", Address: " + details.getDetailsAddress());
+
         ctx.close();
     }
 }
