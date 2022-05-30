@@ -28,4 +28,5 @@ public class Car {
             mappedBy = "car"
     )
     private Driver driver;
+
 }
