@@ -3,25 +3,18 @@ package platform.codingnomads.co.springdata.example.ddl.manytoone.unidirectional
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Comment {
 
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, updatable = false)
-    private String username;
-
     @Column(nullable = false)
-    private String content;
+    private String text;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "comment_id")
-    private List<Message> messages;
 }
