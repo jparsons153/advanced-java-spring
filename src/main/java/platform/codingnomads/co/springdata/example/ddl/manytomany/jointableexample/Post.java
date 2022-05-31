@@ -33,4 +33,14 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "location_latitude", referencedColumnName = "latitude")
     )
     private Set<Location> locations;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            //change join table name
+            name = "post_users_join_table",
+            //specify a column named post_users referencing the user column in the post table
+            inverseJoinColumns = @JoinColumn(name = "post_user", referencedColumnName = "user")
+    )
+    private Set<Users> user;
+
 }
