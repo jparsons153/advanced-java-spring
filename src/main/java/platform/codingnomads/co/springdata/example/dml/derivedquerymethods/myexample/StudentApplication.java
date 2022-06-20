@@ -64,6 +64,6 @@ public class StudentApplication implements CommandLineRunner {
 
         // findByLastNameOrderByFirstNameAsc
         System.out.println("Finding by last name Norris " + studentrepo.findByLastNameOrderByFirstNameAsc("Norris"));
-        
+
         }
     }
