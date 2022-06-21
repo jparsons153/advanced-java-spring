@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import platform.codingnomads.co.springdata.example.dml.transactional.services.PointService;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -21,18 +22,18 @@ public class TransactionalApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //@Transactional I
+       // @Transactional I
 
         pointService.foo();
-//        pointService.doSomeWork();
+        pointService.doSomeWork();
 
         //@Transactional II
 
-//        pointService.timeOutAfter5();
-//        pointService.triggerTimeout();
+       pointService.timeOutAfter5();
+       pointService.triggerTimeout();
 
-//        System.out.println(pointService.getPointById(1L).toString());
-//        pointService.noExceptionExpected();
+       System.out.println(pointService.getPointById(1L).toString());
+       pointService.noExceptionExpected();
 
         try {
             pointService.rollbackFor();
