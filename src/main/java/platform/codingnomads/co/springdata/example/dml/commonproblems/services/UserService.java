@@ -2,6 +2,8 @@ package platform.codingnomads.co.springdata.example.dml.commonproblems.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import platform.codingnomads.co.springdata.example.dml.commonproblems.models.Address;
 import platform.codingnomads.co.springdata.example.dml.commonproblems.models.ContactCard;
 import platform.codingnomads.co.springdata.example.dml.commonproblems.models.User;
@@ -13,6 +15,7 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
+    @Transactional
     public void persistAFewUsers() {
 
         //set up an Address
@@ -110,7 +113,7 @@ public class UserService {
         //build a second User with an ID already assigned
         User user2 = User.builder()
                 //note that unlike user1, user2 is assigned ID 1
-                .id(1L)
+              //  .id(1L)
                 .username("a_username")
                 .contactCard(contactCard2)
                 .address(address2)
