@@ -40,8 +40,29 @@ public class MyBatisDemoApplication {
             song2.setArtist_name("Gus Dapperton");
             song2.setSong_length(279);
 
+            Song song4 = new Song();
+            song4.setName("Baubles, Bangles & Beads");
+            song4.setAlbum_name("Trio");
+            song4.setArtist_name("Nick Osman");
+            song4.setSong_length(202);
+
+            Song song5 = new Song();
+            song5.setName("Take Five");
+            song5.setAlbum_name("Take Five");
+            song5.setArtist_name("The Dave Brubeck Quartet");
+            song5.setSong_length(324);
+
+            Song song6 = new Song();
+            song6.setName("I Got a Woman");
+            song6.setAlbum_name("Hallellujah I love her so");
+            song6.setArtist_name("Ray Charles");
+            song6.setSong_length(260);
+
             songMapper.insertNewSong(song1);
             songMapper.insertNewSong(song2);
+            songMapper.insertNewSong(song4);
+            songMapper.insertNewSong(song5);
+            songMapper.insertNewSong(song6);
 
             Song song3 = songMapper.getSongById(1L);
 
