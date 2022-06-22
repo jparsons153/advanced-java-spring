@@ -35,4 +35,20 @@ public class ResultsDemoApplication {
             System.out.println(song3.toString());
         };
     }
+
+    @Bean
+    public CommandLineRunner loadInitialLocationData(LocationMapper locationMapper) {
+        return (args) -> {
+            Location loc1 = new Location();
+            loc1.setPlaceName("Minnesota, WI");
+            loc1.setAddress("Wiscounsin");
+            loc1.setPostcode("90210");
+
+            locationMapper.insertLocation(loc1);
+
+            System.out.println(loc1.toString());
+        };
+    }
+
+
 }
