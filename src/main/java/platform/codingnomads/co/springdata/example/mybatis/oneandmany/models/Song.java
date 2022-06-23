@@ -13,7 +13,7 @@ public class Song {
 
     private String name;
 
-    private String albumName;
+    private Album albumName;
 
     private Artist artist;
 

@@ -17,5 +17,5 @@ public class Artist {
 
     private String bio;
 
-    private ArrayList<Song> songs;
+    private ArrayList<Album> albums;
 }
