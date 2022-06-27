@@ -30,4 +30,9 @@ public interface ArtistMapper {
 
     @Select("SELECT * FROM mybatis.artists WHERE id = #{param1};")
     Artist getArtistByIdWithoutSongs(Long id);
+
+    //getArtistByIdWithoutAlbums
+    @Select("SELECT * FROM mybatis.artists WHERE id = #{param1};")
+    Artist getArtistByIdWithoutAlbums(Long id);
+
 }
