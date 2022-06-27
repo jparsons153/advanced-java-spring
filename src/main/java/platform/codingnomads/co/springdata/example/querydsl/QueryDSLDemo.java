@@ -59,20 +59,47 @@ public class QueryDSLDemo implements CommandLineRunner {
         );
 
         final List<Route> routesByCode = routeRepository.findAllRoutesBySearchQuery(SearchQuery.builder().code("A-B").build());
-        routesByCode.forEach(System.out::println);
+      //  routesByCode.forEach(System.out::println);
 
         final List<Route> routesByCodeAndOrigin = routeRepository.findAllRoutesBySearchQuery(SearchQuery.builder().code("A-B").origin("A").build());
 
-        routesByCodeAndOrigin.forEach(System.out::println);
+     //   routesByCodeAndOrigin.forEach(System.out::println);
 
         //query the database straight-up without using repository
-        QArea qArea = QArea.area;
-        JPAQuery<?> query = new JPAQuery<>(entityManager);
-        Area area = query.select(qArea)
-                .from(qArea)
-                .where(qArea.code.eq("A"))
+//        QArea qArea = QArea.area;
+//        JPAQuery<?> query = new JPAQuery<>(entityManager);
+//        Area area = query.select(qArea)
+//                .from(qArea)
+//                .where(qArea.code.eq("A"))
+//                .fetchOne();
+//        System.out.println(area);
+
+        System.out.println("\n"+"Queries added for exercise" + "\n");
+
+        System.out.println("Query #1");
+
+        QArea qArea2 = QArea.area;
+        JPAQuery<?> query2 = new JPAQuery<>(entityManager);
+        Area area2 = query2.select(qArea2)
+                .from(qArea2)
+                .where(qArea2.code.eq("C"))
                 .fetchOne();
-        System.out.println(area);
+        System.out.println(area2);
+
+        System.out.println("\n" + "Query #2");
+
+        QArea qArea3 = QArea.area;
+        JPAQuery<?> query3 = new JPAQuery<>(entityManager);
+        JPAQuery<?> areaList = query3.from(qArea3).orderBy(qArea3.code.asc());
+
+        System.out.println("\n" + "Query #3");
+
+        QArea qArea4 = QArea.area;
+        JPAQuery<?> query4 = new JPAQuery<>(entityManager);
+        JPAQuery<?> areaList2 = query4.select(qArea4)
+                .from(qArea4).where(qArea2.code.eq("C")).fetchAll();
+
+        System.out.println("Deleting all..");
 
         routeRepository.deleteAll();
         areaRepository.deleteAll();
