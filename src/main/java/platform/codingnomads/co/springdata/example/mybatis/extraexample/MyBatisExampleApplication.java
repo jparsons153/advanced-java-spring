@@ -8,6 +8,11 @@ import platform.codingnomads.co.springdata.example.mybatis.extraexample.mappers.
 import platform.codingnomads.co.springdata.example.mybatis.extraexample.mappers.ImageMapper;
 import platform.codingnomads.co.springdata.example.mybatis.extraexample.mappers.LessonMapper;
 import platform.codingnomads.co.springdata.example.mybatis.extraexample.mappers.SectionMapper;
+import platform.codingnomads.co.springdata.example.mybatis.extraexample.models.Chapter;
+import platform.codingnomads.co.springdata.example.mybatis.extraexample.models.Image;
+import platform.codingnomads.co.springdata.example.mybatis.extraexample.models.Section;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class MyBatisExampleApplication implements CommandLineRunner {
@@ -41,6 +46,25 @@ public class MyBatisExampleApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+    // Image mapper CRUD
+        byte[] byteArray1 = {80, 65, 78, 75, 65, 74};
+        imageMapper.insertNewImage("IMM02",byteArray1);
+     //   imageMapper.getImageByName("image one"));
+     //   imageMapper.renameImage("image one", "IM002");
+     //   imageMapper.deleteImageByName("IM002");
+
+        Section section01 = new Section();
+        section01.setName("section 01");
+        section01.setId(1L);
+        sectionMapper.insertNewSection("Section 01");
+
+        Chapter chapter01 = new Chapter();
+        chapter01.setName("chapter 01");
+//        chapterMapper.insertNewChapter("chapter 01", 1L);
+
+     //   lessonMapper.insertNewLesson("Lesson number one","this is lesson one",chapter01.getId());
+
 
     }
 }
