@@ -1,6 +1,7 @@
 package platform.codingnomads.co.springdata.example.querydsl;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -76,28 +77,42 @@ public class QueryDSLDemo implements CommandLineRunner {
 
         System.out.println("\n"+"Queries added for exercise" + "\n");
 
-        System.out.println("Query #1");
+        System.out.println("Query #1 using JPA Query where area code is C, fetch first");
 
         QArea qArea2 = QArea.area;
         JPAQuery<?> query2 = new JPAQuery<>(entityManager);
         Area area2 = query2.select(qArea2)
                 .from(qArea2)
                 .where(qArea2.code.eq("C"))
-                .fetchOne();
+                .fetchFirst();
         System.out.println(area2);
 
-        System.out.println("\n" + "Query #2");
+        System.out.println("\n" + "Query #2 using JPA Query factory where area code is A, fetch all");
 
         QArea qArea3 = QArea.area;
-        JPAQuery<?> query3 = new JPAQuery<>(entityManager);
-        JPAQuery<?> areaList = query3.from(qArea3).orderBy(qArea3.code.asc());
+        JPAQueryFactory query3 = new JPAQueryFactory(entityManager);
+        List<Area> area3 = query3.selectFrom(qArea3)
+                .where(qArea3.code.eq("A"))
+                .fetch();
+        area3.forEach(System.out::println);
 
-        System.out.println("\n" + "Query #3");
+        System.out.println("\n" + "Query #3 where area code contains B");
 
         QArea qArea4 = QArea.area;
-        JPAQuery<?> query4 = new JPAQuery<>(entityManager);
-        JPAQuery<?> areaList2 = query4.select(qArea4)
-                .from(qArea4).where(qArea2.code.eq("C")).fetchAll();
+        JPAQueryFactory query4 = new JPAQueryFactory(entityManager);
+        List<Area> area4 = query4.selectFrom(qArea4)
+                .where(qArea4.code.contains("B"))
+                .fetch();
+        area4.forEach(System.out::println);
+
+        System.out.println("\n" + "Query #4 where area code is not null");
+
+        QArea qArea5 = QArea.area;
+        JPAQueryFactory query5 = new JPAQueryFactory(entityManager);
+        List<Area> area5 = query5.selectFrom(qArea5)
+                .where(qArea5.code.isNotNull())
+                .fetch();
+        area5.forEach(System.out::println);
 
         System.out.println("Deleting all..");
 
