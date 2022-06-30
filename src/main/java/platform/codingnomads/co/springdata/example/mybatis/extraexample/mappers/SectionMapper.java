@@ -10,7 +10,9 @@ import java.util.List;
 public interface SectionMapper {
 
     @Insert("INSERT INTO mybatis.sections (name) VALUES (#{name});")
-    void insertNewSection(String name);
+    // use method similiar to artist mapper
+    // void return
+    Long insertNewSection(String name);
 
     @Select("SELECT id, name FROM mybatis.sections WHERE id = #{param1};")
     @Results(

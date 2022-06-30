@@ -1,5 +1,9 @@
 package platform.codingnomads.co.springdata.example.mybatis.extraexample;
 
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +17,7 @@ import platform.codingnomads.co.springdata.example.mybatis.extraexample.models.I
 import platform.codingnomads.co.springdata.example.mybatis.extraexample.models.Section;
 
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class MyBatisExampleApplication implements CommandLineRunner {
@@ -54,13 +59,15 @@ public class MyBatisExampleApplication implements CommandLineRunner {
      //   imageMapper.renameImage("image one", "IM002");
      //   imageMapper.deleteImageByName("IM002");
 
-        Section section01 = new Section();
-        section01.setName("section 01");
-        section01.setId(1L);
-        sectionMapper.insertNewSection("Section 01");
+        //Section section01 = new Section();
+       // section01.setName("section 01");
+//        section01.setId(1L);
+        Long section01Id = sectionMapper.insertNewSection("section 01");
+Section section01 = sectionMapper.getSectionById(section01Id);
+        System.out.println("section 01 id" + section01.getId());
 
-        Chapter chapter01 = new Chapter();
-        chapter01.setName("chapter 01");
+//        Chapter chapter01 = new Chapter();
+//        chapter01.setName("chapter 01");
 //        chapterMapper.insertNewChapter("chapter 01", 1L);
 
      //   lessonMapper.insertNewLesson("Lesson number one","this is lesson one",chapter01.getId());
