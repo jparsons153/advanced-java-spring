@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "routes")
 @Builder
 @ToString
-public class Route implements Serializable {
+public class Route<code> implements Serializable {
 
     private static final long serialVersionUID = -2624055642258734917L;
 
@@ -39,4 +39,8 @@ public class Route implements Serializable {
             foreignKey = @ForeignKey(name = "fk_routes_destination_area_id")
     )
     private Area destination;
+
+    public void setCode(Area origin, Area destination) {
+        this.code = origin.getCode() + "-" + destination.getCode();
+    }
 }

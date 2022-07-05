@@ -25,14 +25,15 @@ public class SpringDataLab implements CommandLineRunner {
 
         final List<Area> areas = areaRepository.saveAll(
                 Arrays.asList(
+                        Area.builder().code("A").build(),
+                        Area.builder().code("B").build(),
+                        Area.builder().code("C").build(),
+                        Area.builder().code("D").build(),
                         Area.builder().code("G").build(),
                         Area.builder().code("H").build(),
                         Area.builder().code("Y").build(),
                         Area.builder().code("Z").build()
                 )
         );
-
-
-
     }
 }
