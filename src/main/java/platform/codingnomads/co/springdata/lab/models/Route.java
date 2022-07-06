@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "routes")
-@Builder
 @ToString
 public class Route<code> implements Serializable {
 
@@ -40,7 +39,10 @@ public class Route<code> implements Serializable {
     )
     private Area destination;
 
-    public void setCode(Area origin, Area destination) {
-        this.code = origin.getCode() + "-" + destination.getCode();
+    @Builder
+    public Route(Area origin, Area destination) {
+        this.origin = origin;
+        this.destination = destination;
+        this.code = (origin.getCode() + "-" + destination.getCode());
     }
 }
