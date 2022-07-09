@@ -40,18 +40,18 @@ public class SpringDataLab implements CommandLineRunner {
                 )
         );
 
-        final List<Route> routes = routeRepository.saveAll(
-                Arrays.asList(
-                        Route.builder().origin(areaRepository.findByCode("A")).destination(areaRepository.findByCode("B")).build(),
-                        Route.builder().origin(areaRepository.findByCode("B")).destination(areaRepository.findByCode("C")).build(),
-                        Route.builder().origin(areaRepository.findByCode("C")).destination(areaRepository.findByCode("D")).build(),
-                        Route.builder().origin(areaRepository.findByCode("G")).destination(areaRepository.findByCode("H")).build(),
-                        Route.builder().origin(areaRepository.findByCode("Y")).destination(areaRepository.findByCode("Z")).build()
-                )
-        );
+//        final List<Route> routes = routeRepository.saveAll(
+//                Arrays.asList(
+//                        Route.builder().origin(areaRepository.findByCode("A")).destination(areaRepository.findByCode("B")).build(),
+//                        Route.builder().origin(areaRepository.findByCode("B")).destination(areaRepository.findByCode("C")).build(),
+//                        Route.builder().origin(areaRepository.findByCode("C")).destination(areaRepository.findByCode("D")).build(),
+//                        Route.builder().origin(areaRepository.findByCode("G")).destination(areaRepository.findByCode("H")).build(),
+//                        Route.builder().origin(areaRepository.findByCode("Y")).destination(areaRepository.findByCode("Z")).build()
+//                )
+//        );
 
-        System.out.println("\n********* findByCode starting with A *********");
-        List<Area> areaList = (List<Area>) areaRepository.findByCode("A");
-        areaList.forEach(System.out::println);
+//        System.out.println("\n********* findByCode starting with A *********");
+//        List<Area> areaList = (List<Area>) areaRepository.findByCode("A");
+//        areaList.forEach(System.out::println);
     }
 }

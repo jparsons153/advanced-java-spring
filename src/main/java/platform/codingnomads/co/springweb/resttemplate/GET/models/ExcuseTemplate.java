@@ -6,5 +6,7 @@ import java.util.Arrays;
 
 @Data
 public class ExcuseTemplate {
-    String[] excuseArray = {"id","excuse", "category"};
+    int id;
+    String excuse;
+    String category;
 }

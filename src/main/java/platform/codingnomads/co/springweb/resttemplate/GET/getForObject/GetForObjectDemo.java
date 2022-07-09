@@ -11,6 +11,8 @@ import platform.codingnomads.co.springweb.resttemplate.GET.getForObject.video_de
 import platform.codingnomads.co.springweb.resttemplate.GET.models.ExcuseTemplate;
 import platform.codingnomads.co.springweb.resttemplate.GET.models.KanyeTemplate;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class GetForObjectDemo {
 
@@ -39,9 +41,8 @@ public class GetForObjectDemo {
 
             System.out.println(response.toString());
 
-            ExcuseTemplate excuse = restTemplate.getForObject("https://excuser.herokuapp.com/v1/excuse",ExcuseTemplate.class);
-            System.out.println(excuse.toString());
-
+            ExcuseTemplate[] excuse = restTemplate.getForObject("https://excuser.herokuapp.com/v1/excuse",ExcuseTemplate[].class);
+            Arrays.stream(excuse).forEach(System.out::print);
         };
     }
 }
