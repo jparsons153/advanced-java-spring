@@ -41,8 +41,14 @@ public class GetForObjectDemo {
 
             System.out.println(response.toString());
 
+            // random excuse
             ExcuseTemplate[] excuse = restTemplate.getForObject("https://excuser.herokuapp.com/v1/excuse",ExcuseTemplate[].class);
             Arrays.stream(excuse).forEach(System.out::print);
+
+            // get n random excuses for a specific category
+            ExcuseTemplate[] excuse3 = restTemplate.getForObject("https://excuser.herokuapp.com/v1/excuse/office/4",ExcuseTemplate[].class);
+            Arrays.stream(excuse3).forEach(System.out::print);
+
         };
     }
 }
