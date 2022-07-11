@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import platform.codingnomads.co.springweb.resttemplate.POST.models.TaskResponseObject;
 import platform.codingnomads.co.springweb.resttemplate.POST.models.Task;
@@ -43,7 +44,7 @@ public class postForObjectMain {
             if (taskReturnedByServerAfterPost != null) {
                 System.out.println(taskReturnedByServerAfterPost);
             }
-            // Posting new user
+            // Posting new user using postForObject
             User newUser = User.builder()
                     .email("john.bloggs@gmail.com")
                     .first_name("John")
@@ -55,6 +56,7 @@ public class postForObjectMain {
             if (userReturnedByServerAfterPost != null) {
                 System.out.println(userReturnedByServerAfterPost);
             }
+
         };
     }
 }
