@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import platform.codingnomads.co.springweb.resttemplate.POST.models.ResponseObject;
+import platform.codingnomads.co.springweb.resttemplate.POST.models.TaskResponseObject;
 import platform.codingnomads.co.springweb.resttemplate.POST.models.Task;
 
 import java.util.Objects;
@@ -39,8 +39,8 @@ public class postForEntityMain {
                     .completed(false)
                     .build();
 
-            ResponseEntity<ResponseObject> responseEntity = restTemplate
-                    .postForEntity("http://demo.codingnomads.co:8080/tasks_api/tasks", newTask, ResponseObject.class);
+            ResponseEntity<TaskResponseObject> responseEntity = restTemplate
+                    .postForEntity("http://demo.codingnomads.co:8080/tasks_api/tasks", newTask, TaskResponseObject.class);
 
             if (responseEntity.getStatusCode().equals(HttpStatus.CREATED)) {
                 System.out.println(Objects.requireNonNull(responseEntity.getBody()));
