@@ -5,15 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class ConversionController {
 
     private final String text = "this is the text that this is all based on.";
+    char[] chars = text.toCharArray();
 
     @RequestMapping(path = "/binary", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String returnSomeBinary() {
         StringBuilder binary = new StringBuilder();
-        char[] chars = text.toCharArray();
 
         for(char c: chars) {
             binary.append("   ").append(Integer.toBinaryString(c));
@@ -24,5 +27,16 @@ public class ConversionController {
     @RequestMapping(path = "/normal", method = RequestMethod.GET)
     public String returnTheString() {
         return text;
+    }
+
+    @RequestMapping(path = "/backwards", method = RequestMethod.GET)
+    public String reverseTheString(){
+        int index=chars.length-1;
+        List<Character> reverseText = new ArrayList<>();
+        for(char c: chars) {
+            reverseText.add(index,c);
+            index =-1;
+        }
+        return reverseText.toString();
     }
 }
