@@ -33,6 +33,17 @@ public class TaskController {
                 .body(savedTask);
     }
 
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Task> updateTask(@PathVariable Long id){
+        Optional<Task> taskToReturn = taskRepository.findById(id);
+
+        if (taskToReturn.isPresent()) {
+            return ResponseEntity.ok().body(taskToReturn.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> getTask(@PathVariable Long id) {
 

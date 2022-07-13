@@ -18,10 +18,10 @@ public class HomeController {
         return "Hello from delete";
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    String post() {
-//        return "Hello from post";
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    String post() {
+        return "Hello from post";
+    }
 
     @RequestMapping(method = RequestMethod.PUT)
     String put() {
