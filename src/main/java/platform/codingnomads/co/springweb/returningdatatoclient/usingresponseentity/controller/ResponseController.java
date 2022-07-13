@@ -38,4 +38,12 @@ public class ResponseController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/practice")
+    public ResponseEntity<User> practiceMethod(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location","/tasks_api/tasks/");
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+
+    }
 }
