@@ -16,6 +16,7 @@ import platform.codingnomads.co.springweb.gettingdatafromclient.handlingmultipar
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -83,14 +84,17 @@ public class HandleMultipartDataController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
                 // display the file inline
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
                 // download file, without setting file name
 //                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
                 // download file, and specify file name
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
+                //.header(HttpHeaders.CONTENT_DISPOSITION,
+//                       String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
+// add query term
+    @GetMapping("/download/")
+    public List<FileResponse> searchFilesByName()()
 
     @PutMapping("/uploadSingleFile/{id}")
     public ResponseEntity<?> updateFileById(@PathVariable(name = "id") Long fileId, @RequestBody MultipartFile file) {
