@@ -69,6 +69,57 @@ public class HandleMultipartDataController {
                     new IllegalStateException("Sorry could not store file " + fileName + "Try again!", ex));
         }
     }
+    // add duplicateFile() method
+    @PostMapping("/duplicateFile/{id}/{name}")
+    // Path variable for ID and new name(specified by user)?
+    public ResponseEntity<?> duplicateFile(@PathVariable(name = "id") Long fileId, @PathVariable(name = "name") String duplicateName, @RequestBody MultipartFile file) {
+        // get file to copy
+        final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
+
+        // check if file ID is valid
+        if (optional.isEmpty()) {
+            return ResponseEntity.badRequest()
+                    .body(new NoSuchFileException("The ID you passed in was not valid. " +
+                            "Where you trying to upload a new file?"));
+        } else if (file == null) {
+            return ResponseEntity.badRequest()
+                    .body(new NoSuchFileException("No file was received, please try again."));
+        }
+
+        // set databaseFile to file from get request
+        DatabaseFile databaseFile = optional.get();
+        DatabaseFile duplicateFile = new DatabaseFile();
+        duplicateFile = databaseFile;
+
+        // set data, fileName & fileType
+        try {
+            duplicateFile.setData(file.getBytes());
+
+        // set fileName = new name (specified by user)
+           // duplicateFile.setFileName(file.getOriginalFilename());
+            duplicateFile.setFileName(duplicateName);
+
+            duplicateFile.setFileType(file.getContentType());
+        } catch (IOException ex) {
+            return ResponseEntity.badRequest()
+                    .body(new IllegalStateException("Sorry could not update file "
+                            + file.getOriginalFilename() + "Try again!", ex));
+        }
+
+        final DatabaseFile savedFile = fileRepository.save(duplicateFile);
+
+        savedFile.setDownloadUrl(ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/download/")
+                .path(String.valueOf(savedFile.getId()))
+                .toUriString());
+
+        return ResponseEntity.ok(FileResponse.builder()
+                .fileName(duplicateFile.getFileName())
+                .fileDownloadUri(savedFile.getDownloadUrl())
+                .fileType(file.getContentType())
+                .size(file.getSize())
+                .build());
+    }
 
     @GetMapping("/download/{id}")
     public ResponseEntity<?> downloadFileById(@PathVariable(name = "id") Long fileId) {
@@ -92,9 +143,6 @@ public class HandleMultipartDataController {
 //                       String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
-// add query term
-    @GetMapping("/download/")
-    public List<FileResponse> searchFilesByName()()
 
     @PutMapping("/uploadSingleFile/{id}")
     public ResponseEntity<?> updateFileById(@PathVariable(name = "id") Long fileId, @RequestBody MultipartFile file) {
@@ -148,5 +196,31 @@ public class HandleMultipartDataController {
         fileRepository.deleteById(fileId);
         return ResponseEntity.ok("File with ID " + fileId + " and name " + optional.get().getFileName() + " was deleted");
     }
+
+    // add query term
+//    @GetMapping("/download/find_files?file={name}")
+//    public ResponseEntity<?> searchFilesByName(@RequestParam(name = "name") String searchName, @RequestBody MultipartFile file){
+//        final List<FileResponse> optionalFile = fileRepository.findAll();
+//
+//        if (optionalFile.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File not found with name: " + searchName);
+//        }
+//
+//        FileResponse databaseFile = optionalFile.get(0);
+//
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
+//                // display the file inline
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+//                // download file, without setting file name
+////                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
+//                // download file, and specify file name
+//                //.header(HttpHeaders.CONTENT_DISPOSITION,
+////                       String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
+//                .body(new ByteArrayResource(databaseFile.getData()));
+//    }
+
+
+
 }
 
