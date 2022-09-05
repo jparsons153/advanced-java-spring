@@ -71,7 +71,6 @@ public class HandleMultipartDataController {
     }
     // add duplicateFile() method
     @PostMapping("/duplicateFile/{id}/{name}")
-    // Path variable for ID and new name(specified by user)?
     public ResponseEntity<?> duplicateFile(@PathVariable(name = "id") Long fileId, @PathVariable(name = "name") String duplicateName, @RequestBody MultipartFile file) {
         // get file to copy
         final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
@@ -121,8 +120,32 @@ public class HandleMultipartDataController {
                 .build());
     }
 
-    @GetMapping("/download/{id}")
-    public ResponseEntity<?> downloadFileById(@PathVariable(name = "id") Long fileId) {
+//    @GetMapping("/download/{id}")
+//    public ResponseEntity<?> downloadFileById(@PathVariable(name = "id") Long fileId) {
+//
+//        final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
+//
+//        if (optional.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File not found with id: " + fileId);
+//        }
+//
+//        DatabaseFile databaseFile = optional.get();
+//
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
+//                // display the file inline
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+//                // download file, without setting file name
+////                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
+//                // download file, and specify file name
+//                //.header(HttpHeaders.CONTENT_DISPOSITION,
+////                       String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
+//                .body(new ByteArrayResource(databaseFile.getData()));
+//    }
+
+    // updated downloadFileById method for search query
+    @GetMapping("/download")
+    public ResponseEntity<?> downloadFileById(@RequestParam(name = "id") Long fileId) {
 
         final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
 
@@ -143,6 +166,7 @@ public class HandleMultipartDataController {
 //                       String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
+
 
     @PutMapping("/uploadSingleFile/{id}")
     public ResponseEntity<?> updateFileById(@PathVariable(name = "id") Long fileId, @RequestBody MultipartFile file) {
@@ -198,7 +222,7 @@ public class HandleMultipartDataController {
     }
 
     // add query term
-//    @GetMapping("/download/find_files?file={name}")
+//    @GetMapping("/findFiles")
 //    public ResponseEntity<?> searchFilesByName(@RequestParam(name = "name") String searchName, @RequestBody MultipartFile file){
 //        final List<FileResponse> optionalFile = fileRepository.findAll();
 //

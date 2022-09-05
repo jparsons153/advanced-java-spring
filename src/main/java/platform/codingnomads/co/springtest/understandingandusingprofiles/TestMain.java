@@ -3,10 +3,11 @@ package platform.codingnomads.co.springtest.understandingandusingprofiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
-@Profile("test")
+@Profile("understanding_and_using_profiles")
 public class TestMain implements CommandLineRunner {
 
     @Autowired
@@ -30,5 +31,13 @@ public class TestMain implements CommandLineRunner {
                 .intensity(4)
                 .sugar(true)
                 .build());
+
+        printMessage();
+    }
+
+    @Bean
+    @Profile({"understanding_and_using_profiles"})
+    public void printMessage(){
+        System.out.println("printing message to the console");
     }
 }
