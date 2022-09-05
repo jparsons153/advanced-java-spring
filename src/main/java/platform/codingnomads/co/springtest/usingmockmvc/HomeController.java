@@ -21,4 +21,10 @@ public class HomeController {
     public String greet() {
         return "Hello Back";
     }
+
+    @GetMapping("/home")
+    public String homeIndex() {
+
+        return "redirect:https://www.google.com";
+    }
 }

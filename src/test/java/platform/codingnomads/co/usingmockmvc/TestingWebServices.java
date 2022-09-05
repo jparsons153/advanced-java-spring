@@ -50,4 +50,14 @@ public class TestingWebServices {
                 //the view name expected is greeting
                 .andExpect(view().name("greeting"));
     }
+
+    @Test
+    public void baseURLShouldReturnRedirect() throws Exception {
+        //use mockMvc to start a request
+        mockMvc
+                .perform(get("/home"))
+                .andExpect(status().isPermanentRedirect())
+                .andExpect(redirectedUrl("google.com"));
+    }
+
 }
