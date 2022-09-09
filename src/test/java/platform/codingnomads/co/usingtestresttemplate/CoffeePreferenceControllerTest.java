@@ -1,5 +1,6 @@
 package platform.codingnomads.co.usingtestresttemplate;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ public class CoffeePreferenceControllerTest {
     TestRestTemplate testRestTemplate;
 
     @Test
+    @Order(1)
     public void testPostCoffeePreference() throws Exception {
 
         //build new CoffeePreference to post
@@ -40,5 +42,15 @@ public class CoffeePreferenceControllerTest {
 
         //confirm ID was assigned
         assertThat(Objects.requireNonNull(postedCoffeePreference.getBody()).getId()).isNotNull();
+    }
+
+    @Test
+    @Order(2)
+    public void testGetCoffeePreference() throws Exception {
+        final long coffeeID =1;
+        ResponseEntity<CoffeePreference> getCoffeePreference = testRestTemplate.getForEntity("/coffee/" + coffeeID,CoffeePreference.class);
+
+        //confirm ID was assigned
+        assertThat(Objects.requireNonNull(getCoffeePreference.getBody()).getId()).isNotNull();
     }
 }

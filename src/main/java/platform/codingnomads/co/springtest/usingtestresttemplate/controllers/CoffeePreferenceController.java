@@ -1,11 +1,11 @@
 package platform.codingnomads.co.springtest.usingtestresttemplate.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import platform.codingnomads.co.springtest.usingtestresttemplate.NoSuchCoffeeException;
 import platform.codingnomads.co.springtest.usingtestresttemplate.models.CoffeePreference;
 import platform.codingnomads.co.springtest.usingtestresttemplate.services.CoffeePreferenceService;
 
@@ -25,4 +25,15 @@ public class CoffeePreferenceController {
             return ResponseEntity.status(500).body(new Exception(e.getMessage()));
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCoffeePreference(@PathVariable("id") Long id) {
+        try {
+            CoffeePreference coffee = service.getCoffeeById(id);
+            return ResponseEntity.ok(coffee);
+        } catch (NoSuchCoffeeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }
