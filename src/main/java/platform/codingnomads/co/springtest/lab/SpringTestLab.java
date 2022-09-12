@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 import platform.codingnomads.co.springtest.lab.entity.Movie;
 import platform.codingnomads.co.springtest.lab.repository.MovieRepository;
 
@@ -12,6 +13,7 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 @SpringBootApplication
+@Profile("test")
 @RequiredArgsConstructor
 public class SpringTestLab implements CommandLineRunner {
 
