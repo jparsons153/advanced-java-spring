@@ -13,7 +13,6 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 @SpringBootApplication
-@Profile("test")
 @RequiredArgsConstructor
 public class SpringTestLab implements CommandLineRunner {
 

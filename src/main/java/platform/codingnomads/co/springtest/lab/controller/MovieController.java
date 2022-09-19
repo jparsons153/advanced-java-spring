@@ -10,7 +10,7 @@ import platform.codingnomads.co.springtest.lab.service.MovieService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+//@RequestMapping("/")
 @AllArgsConstructor
 public class MovieController {
 

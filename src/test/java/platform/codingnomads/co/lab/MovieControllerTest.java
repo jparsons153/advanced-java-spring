@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 // use of @ContextConfiguration or @ContextHierarchy??
-@SpringBootTest(classes = SpringTestLab.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = SpringTestLab.class)
 @AutoConfigureMockMvc
 @ActiveProfiles(profiles = "test")
 public class MovieControllerTest {
@@ -58,20 +58,20 @@ public class MovieControllerTest {
 //    }
 
       // Mock MovieService to create list of Movies
-    @Test
-    public void testGetAllMoviesSuccessMockService() throws Exception {
-        Movie movie = Movie.builder().name("Parasite").rating(8.0).build();
-        Movie anotherMovie = Movie.builder().name("Goodfellas").rating(9.1).build();
-
-        List<Movie> movieList = new ArrayList<>();
-        movieList.add(movie);
-        movieList.add(anotherMovie);
-
-        when(movieServiceMock.getAllMovies()).thenReturn(movieList);
-
-        mockMvc.perform(get("/all"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$", hasSize(2)));
-    }
+//    @Test
+//    public void testGetAllMoviesSuccessMockService() throws Exception {
+//        Movie movie = Movie.builder().name("Parasite").rating(8.0).build();
+//        Movie anotherMovie = Movie.builder().name("Goodfellas").rating(9.1).build();
+//
+//        List<Movie> movieList = new ArrayList<>();
+//        movieList.add(movie);
+//        movieList.add(anotherMovie);
+//
+//        when(movieServiceMock.getAllMovies()).thenReturn(movieList);
+//
+//        mockMvc.perform(get("/all"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType("application/json"))
+//                .andExpect(jsonPath("$", hasSize(2)));
+//    }
 }
