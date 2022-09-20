@@ -8,4 +8,6 @@ public class GreetingService {
     public String greeting() {
         return "Hello Spring Developer!";
     }
+
+    public String customGreeting() {return "Hello Java Spring Developer!";}
 }
