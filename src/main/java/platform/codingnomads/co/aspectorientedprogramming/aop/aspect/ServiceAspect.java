@@ -38,4 +38,14 @@ public class ServiceAspect {
         LOGGER.info("After Returning Advice: " + " Method Name: = " + jp.getSignature().getName());
         LOGGER.info("Result: = " + students);
     }
+
+    @Before("execution(* platform.codingnomads.co.aspectorientedprogramming.aop.service.StudentService.saveStudent())")
+    public void logSaveStudentMethod(JoinPoint joinPoint){
+        LOGGER.info("Custom message before the execution of : " + joinPoint.getSignature());
+    }
+
+    @After("logAllStudentServiceMethods()")
+    public void logAfterStudentSave(JoinPoint joinPoint) {
+        LOGGER.info("Custom message after Advice: " + joinPoint.getSignature().getName());
+    }
 }

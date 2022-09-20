@@ -21,6 +21,8 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    @TrackMethodExecutionTime
+    @Loggable
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
     }
